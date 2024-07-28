@@ -1,3 +1,9 @@
+# Nucleotide-Polymorphism
+The program identifies the consensus sequence and detects mutations for a given genome sequence. Depending on the mutations, Synonymous/non-synonymous mutations, ti/tv ratio, and dn/ds are found.
+
+# What is a 'Nucleotide-Polymorphism' :
+Nucleotide polymorphism is the change in a single base position in the genome, and it can be located in coding or non-coding regions. Otherwise known as Mutations. It can affect viral genomes in several ways, like the rate of multiplying (spreading), the severity of infection, etc.
+
 # Installation
 
 ## Approach- 1: Download Zip
@@ -8,12 +14,6 @@
 
 # Program Execution
 The program can be run on a Command Prompt or Power Shell or any GUI, having an installed Python Interpreter.
-
-# Nucleotide-Polymorphism
-The program identifies the consensus sequence and detects mutations for a given genome sequence. Depending on the mutations, Synonymous/non-synonymous mutations, ti/tv ratio, and dn/ds are found.
-
-# What is a 'Nucleotide-Polymorphism' :
-Nucleotide polymorphism is the change in a single base position in the genome, and it can be located in coding or non-coding regions. Otherwise known as Mutations. It can affect viral genomes in several ways, like the rate of multiplying (spreading), the severity of infection, etc.
 
 # What the program offers:
 It is a menu-driven program, which can be run on the Command Prompt/ PowerShell/ any GUI for Python Programming.
