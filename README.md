@@ -15,8 +15,16 @@ The outputs of the program are:
   5. Calculates dN/dS (to know more about dN/dS: Please refer to the related journal paper)
 
 # How it works:
-## Preparing the directories for the program run:
-  
+
+## Preparing directories for the program run:
+  ### For NCBI file
+    1. Create a folder 'Supporting Files' in the current working directory (where the program file is saved).
+    2. Create another folder 'ncbi' inside the folder 'Supporting Files'
+  ### For the Gene file
+    1. Create a folder with the name of the gene
+    2. Inside the above folder, create another folder '_raw_fasta'
+    3. Save the downloaded fasta/txt files inside the folder '_raw_fasta'
+         
 Upon running the program, it will display a menu:
 
   1. Convert NCBI_Reference_Sequence.txt to .csv
