@@ -4,7 +4,7 @@ The program identifies the consensus sequence and detects mutations for a given 
 # What is a 'Nucleotide-Polymorphism' :
 Nucleotide polymorphism is the change in a single base position in the genome, and it can be located in coding or non-coding regions. Otherwise known as Mutations. It can affect viral genomes in several ways, like the rate of multiplying (spreading), the severity of infection, etc.
 
-# Installation
+# Installation of the Program
 
 ## Approach- 1: Download Zip
    1. Go to the link https://github.com/MDash-NITAP/Nucleotide-Polymorphism
