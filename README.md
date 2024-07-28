@@ -40,4 +40,4 @@ Upon running the program, it will display a menu:
 The user must enter the corresponding number to the required option and press Enter Key from the keyboard.
 After processing data it will generate csv files and store them in the present working directory.
 
-**To execute 4,5,6 in the menu, it's mandatory to execute options 1,2 and 3 sequentially.**
+> **To execute 4,5,6 in the menu, it's mandatory to execute options 1,2 and 3 sequentially.**
