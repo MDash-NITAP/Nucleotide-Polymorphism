@@ -4,7 +4,7 @@
    1. Go to the link https://github.com/MDash-NITAP/Nucleotide-Polymorphism
    2. Select Download Zip option from the drop-down menu for Code<>      
    3. Extract the Zip folder
-   4. Run the **__Polymorphism_CtoT.py__** file.
+   4. Run the **_Polymorphism_CtoT.py_** file.
 
 # Program Execution
 The program can be run on a Command Prompt or Power Shell or any GUI, having an installed Python Interpreter.
