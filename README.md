@@ -23,7 +23,7 @@ The outputs of the program are:
   ### For the Gene file
     1. Create a folder with the name of the gene
     2. Inside the above folder, create another folder '_raw_fasta'
-    3. Save the downloaded fasta/txt files inside the folder '_raw_fasta'
+    3. Save the downloaded fasta/txt file(s) inside the folder '_raw_fasta'
          
 Upon running the program, it will display a menu:
 
@@ -37,7 +37,7 @@ Upon running the program, it will display a menu:
   8. Exit
   Enter What You Want to Do (In Number):-
 
-The user must enter the corresponding number beside the required option and press Enter Key from the keyboard.
+The user must enter the corresponding number to the required option and press Enter Key from the keyboard.
 After processing data it will generate csv files and store them in the present working directory.
 
-
+**To execute 4,5,6 in the menu, it's mandatory to execute options 1,2 and 3 sequentially.**
