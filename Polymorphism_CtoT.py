@@ -131,7 +131,7 @@ def create_csv(file_list, dir_ncbi_path): #  Only for files with ATGC
 
 
 
-#Finding the Consensus Sequence
+# Finding the Consensus Sequence
 def consensus(data_gene, file_name):
     # Reading From Input File
     data = data_gene.iloc[:, 1:]  ##  or data=df.loc[:,'1':]
@@ -186,7 +186,7 @@ def consensus(data_gene, file_name):
     os.remove(atgc_file)
     return df_consensus                                        #-----------------End of Consensus Functions
 
-#Function for calculationg nonZeroMutations
+# Function for calculationg nonZeroMutations
 def mutation(df_consensus):
     #Calculating Separaed mutations in repeated Rows
     df_ref = df_consensus
