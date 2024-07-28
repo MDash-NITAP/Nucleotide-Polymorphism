@@ -46,11 +46,11 @@ After processing data it will generate csv files and store them in the present w
 
 ### Input File
 The input files have to be saved in the folder '_raw_fasta' before  executing the program. An example of a fasta/text file is given below:
-'''
-  ># Query: nsp11||
-  >
-  >257437|13426|13464
-  TCAGCTGATGCACAATCGTTTTTAAACGGGTTTGCGGTG
-  >257436|13404|13442
-  TCAGCTGATGCACAATCGTTTTTAAACGGGTTTGCGGTG
-'''
+
+  1 ># Query: nsp11||
+  2 >
+  3 >257437|13426|13464
+  4 TCAGCTGATGCACAATCGTTTTTAAACGGGTTTGCGGTG
+  5 >257436|13404|13442
+  6 TCAGCTGATGCACAATCGTTTTTAAACGGGTTTGCGGTG
+
