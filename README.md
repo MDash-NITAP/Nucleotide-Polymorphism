@@ -15,7 +15,7 @@ The outputs of the program are:
   5. Calculates dN/dS (to know more about dN/dS: Please refer to the related journal paper)
 
 # How it works:
-### Preparing the directories for the program run:
+## Preparing the directories for the program run:
   
 Upon running the program, it will display a menu:
 
