@@ -42,7 +42,7 @@ After processing data it will generate csv files and store them in the present w
 
 > **To execute any of the options from 4,5,6 in the menu, it's mandatory to execute options 1,2 and 3 sequentially.**
 
-## Examples of Input files and output files
+## Input files and output files
 
 ### NCBI Input File
 The genome sequence files have to be saved in the folder 'ncbi' before  executing the program. An example of a fasta/text file is given below:
@@ -68,3 +68,5 @@ The input files have to be saved in the folder '_raw_fasta' before  executing th
     5 >257436|13404|13442
     6 TCAGCTGATGCACAATCGTTTTTAAACGGGTTTGCGGTG
 
+### Output Files
+Upon execution, all the output files will be available in the respective folders.
