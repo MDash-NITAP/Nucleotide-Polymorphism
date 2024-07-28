@@ -69,4 +69,4 @@ The input files have to be saved in the folder '_raw_fasta' before  executing th
     6 TCAGCTGATGCACAATCGTTTTTAAACGGGTTTGCGGTG
 
 ### Output Files
-Upon execution, all the output files will be available in the respective folders.
+Upon execution, all the output will be available in the respective folders as csv files.
