@@ -1,2 +1,35 @@
+
 # Nucleotide-Polymorphism
-The program identifies the consensus sequence, and detects mutations for a a given genome sequence. Depending on the mutations, it finds out Synonymous/non-Synonymous mutations, ti/tv ratio and dn/ds.
+The program identifies the consensus sequence and detects mutations for a given genome sequence. Depending on the mutations, Synonymous/non-synonymous mutations, ti/tv ratio, and dn/ds are found.
+
+# What is a 'Nucleotide-Polymorphism' :
+Nucleotide polymorphism is the change in a single base position in the genome, and it can be located in coding or non-coding regions. Otherwise known as Mutations. It can affect viral genomes in several ways, like the rate of multiplying (spreading), the severity of infection, etc.
+
+# What the program offers:
+It is a menu-driven program, which can be run on the Command Prompt/ PowerShell/ any GUI for Python Programming.
+The outputs of the program are:
+  1. It can create csv file from any text/fasta files (genome sequence/ Reference)
+  2. Can align the genome sequence file by 'Fixed Length' Option
+  3. Calculate Mutations and display their normalized value as described in the related journal paper
+  4. Filters out Synonymous and non-synonymous mutations
+  5. Calculates dN/dS (to know more about dN/dS: Please refer to the related journal paper)
+
+# How it works:
+### Preparing the directories for the program run:
+  
+Upon running the program, it will display a menu:
+
+  1. Convert NCBI_Reference_Sequence.txt to .csv
+  2. Create CSV From Fasta Files
+  3. Fix Sequence Length Compared to NCBI
+  4. Syn & Nsyn mutations 
+  5. Normalized Frequencies 
+  6. dN/dS
+  7. Main Menu
+  8. Exit
+  Enter What You Want to Do (In Number):-
+
+The user must enter the corresponding number beside the required option and press Enter Key from the keyboard.
+After processing data it will generate csv files and store them in the present working directory.
+
+
