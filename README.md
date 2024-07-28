@@ -1,3 +1,18 @@
+# Installation
+
+## Approach- 1: Download Zip
+   1. Go to the link https://github.com/MDash-NITAP/SLanalysis.git
+   2. Select Download Zip option from the drop-down menu for Code<>
+   3. For downloading the "SLanalysis.exe" file:
+      
+      a. Select the exe file      
+      b. Download Raw from the top-right corner of the panel, giving descriptions of the file.
+      
+   5. Extract the Zip folder
+   6. Replace the ( Zip folder -> application file )  with the downloaded Raw exe file.
+
+# Program Execution
+The program can be run on a Command Prompt or Power Shell or any GUI, having an installed Python Interpreter.
 
 # Nucleotide-Polymorphism
 The program identifies the consensus sequence and detects mutations for a given genome sequence. Depending on the mutations, Synonymous/non-synonymous mutations, ti/tv ratio, and dn/ds are found.
