@@ -44,8 +44,21 @@ After processing data it will generate csv files and store them in the present w
 
 ## Examples of Input files and output files
 
-### Input File
+### NCBI Input File
+The genome sequence files have to be saved in the folder 'ncbi' before  executing the program. An example of a fasta/text file is given below:
 
+      1 >266..805|ORF1ab|GU280_gp01|nsp1
+      2 atggagagccttgtccctggtttca...
+      3 >806..2719|ORF1ab|GU280_gp01|nsp2
+      4 gcatacactcgctatgtcgataacaacttctgtggccctgatggctaccctctt...
+      5 >2720..8554|ORF1ab|GU280_gp01|nsp3,former nsp1
+      6 gcaccaacaaaggttacttttggtgatgacactgtgatagaag...
+      .
+      .
+      .
+
+
+### Genome sequence Input File
 The input files have to be saved in the folder '_raw_fasta' before  executing the program. An example of a fasta/text file is given below:
 
     1 ># Query: nsp11||
