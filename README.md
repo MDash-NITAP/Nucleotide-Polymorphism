@@ -7,7 +7,7 @@ Nucleotide polymorphism is the change in a single base position in the genome, a
 # Installation of the Program
 
 ## Approach- 1: Download Zip
-   1. Go to the link https://github.com/MDash-NITAP/Nucleotide-Polymorphism
+   1. Go to the link https://github.com/MDash-NITAP/Nucleotide-Polymorphism or https://github.com/MDash-NITAP/Nucleotide-Polymorphism.git
    2. Select Download Zip option from the drop-down menu for Code<>      
    3. Extract the Zip folder
    4. Run the **_Polymorphism_CtoT.py_** file.
