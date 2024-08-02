@@ -34,6 +34,7 @@ def NCBI_length(file_list):
         ncbi_seq.insert(1, 'gene_length', length)
         ncbi_seq = ncbi_seq.set_index("gene_name")
         ncbi_seq.to_csv(file_name)
+        print("Gene Length has been Fixed for NCBI Sequences\n")
         # os.remove('Covid19_NCBI_Seq.csv')
         # ncbi_seq.loc['nsp12','gene_length'] = ncbi_seq.loc['nsp12','gene_length'] - 1 ####------------ TO BE REMOVED
         # print(ncbi_seq)
@@ -83,7 +84,7 @@ def create_csv(file_list, dir_ncbi_path): #  Only for files with ATGC
                     if (li == "\n"):
                         df.write(li.rstrip('\n'))
 
-                    elif li not in ['A', 'T', 'G', 'C']:
+                    elif li.upper() not in ['A', 'T', 'G', 'C']:
                         lee = '-'
                         df.write(',' + lee.rstrip('\n'))
                         CCount += 1
@@ -123,7 +124,7 @@ def create_csv(file_list, dir_ncbi_path): #  Only for files with ATGC
             #df_to_csv.dropna(how='any', axis=0, inplace=True)
         csv_file = file + '_raw.csv'
         df_to_csv.to_csv(csv_file, index=False)
-        print(f"\n{csv_file} File Created\n in {os.getcwd()}")
+        print(f"\n{csv_file} File Created in \n {os.getcwd()} \n")
         #print(os.getcwd())
         os.remove('transit.txt')
         os.remove('transit1.txt')
@@ -131,7 +132,7 @@ def create_csv(file_list, dir_ncbi_path): #  Only for files with ATGC
 
 
 
-# Finding the Consensus Sequence
+#Finding the Consensus Sequence
 def consensus(data_gene, file_name):
     # Reading From Input File
     data = data_gene.iloc[:, 1:]  ##  or data=df.loc[:,'1':]
@@ -186,7 +187,7 @@ def consensus(data_gene, file_name):
     os.remove(atgc_file)
     return df_consensus                                        #-----------------End of Consensus Functions
 
-# Function for calculationg nonZeroMutations
+#Function for calculationg nonZeroMutations
 def mutation(df_consensus):
     #Calculating Separaed mutations in repeated Rows
     df_ref = df_consensus
@@ -515,19 +516,24 @@ def normalized_mutations(data_synNsyn, data_consensus):
 current_path = os.getcwd() #gets current working directory
 path_supportingFile = os.path.join(current_path,'Supporting Files')
 path_ncbi = os.path.join(path_supportingFile,'ncbi')
+path_csv = '_raw_csv'
+path_ncbi_raw_csv = os.path.join(path_ncbi, path_csv)
 #print(f"files inside {dir} - \n",os.listdir())
 
 
 while 1:
     # Menu for File Formating
-    menu = "1. Convert NCBI_Reference_Sequence.txt to .csv\n" \
+    menu = "\n"\
+           "1. Convert NCBI_Reference_Sequence.txt to .csv\n" \
            "2. Create CSV From Fasta Files\n" \
            "3. Fix Sequence Length Comparing to NCBI\n" \
            "4. Syn & Nsyn mutations \n" \
-           "5. Normalized Frequencies \n" \
+           "5. Normalized Frequencies for All \n" \
            "6. dN/dS\n" \
-           "7. Main Menu\n" \
-           "8. Exit\n"\
+           "7. FFD Normalized Frequencies\n"\
+           "8. non-Synonymous Normalized Frequencies\n"\
+           "9. Main Menu\n" \
+           "10. Exit\n"\
            "Enter What You Want to Do (In Number):- "
     choice = int(input(menu))
     if choice == 1:
@@ -545,26 +551,25 @@ while 1:
 
         ncbi_file = list(ncbi_file)
         create_csv(ncbi_file,path_ncbi)
-        path_csv = '_raw_csv'
-        path_raw_csv = os.path.join(path_ncbi, path_csv)
-        os.chdir(path_raw_csv)
+        os.chdir(path_ncbi_raw_csv)
         csv_files = glob.glob("*_raw.csv")
         NCBI_length(csv_files)
         os.chdir(current_path)
 
-    elif choice == 7:
+    elif choice == 9:
         continue
 
-    elif choice == 8:
+    elif choice == 10:
         exit()
 
     else:
-        os.chdir(path_ncbi)
-        ncbi_seq = pd.read_csv("Covid19_NCBI_Seq.csv")
+        os.chdir(path_ncbi_raw_csv)
+        ncbi_seq = pd.read_csv("Covid19_NCBI_Seq_raw.csv")
         ncbi_seq = ncbi_seq.set_index('gene_name')
         os.chdir(current_path)
-        print(os.listdir())  # listdir() gives the list of files and folders
-        dir = input(f"Enter the folder name :- ")
+        print(a for a in os.listdir() if os.path.isdir(a))  # listdir() gives the list of files and folders
+        dir = input(f"Enter the variant folder name :- ")
+        print("\n")
         path = os.path.join(current_path, dir)  # joins two strings as a path
         os.chdir(path)  # move into another directory
         path_raw_csv = os.path.join(path, '_raw_csv')
@@ -572,7 +577,16 @@ while 1:
         path_fixedLength = os.path.join(path, dir_fixedLength)
         dir_synNsyn = "_synNsyn"
         path_synNsyn = os.path.join(path, dir_synNsyn)
-        path_normMutations = os.path.join(path,'_normMutations')
+        dir_consensus = "_consensus"
+        path_consensus = os.path.join(path, dir_consensus)
+        dir_mutation = "_mutation"
+        path_mutation = os.path.join(path, dir_mutation)
+        path_normMutations = os.path.join(path,'_allNormalized')
+        path_dnds = os.path.join(path,'_dnds')
+        dir_ffdNormalized = "_ffdNormalized"
+        path_ffdNormalized = os.path.join(path, dir_ffdNormalized)
+        dir_nsynNormalized = "_nsynNormalized"
+        path_nsynNormalized = os.path.join(path, dir_nsynNormalized)
 
         #files = os.listdir()
 
@@ -596,7 +610,7 @@ while 1:
             os.chdir(path)
 
         elif choice == 3: # Fix Sequence Length
-            print("Reading Files...")
+            print("Reading Files...\n")
             if not os.path.exists(dir_fixedLength):
                 # Create a new directory because it does not exist
                 os.makedirs(dir_fixedLength)
@@ -622,12 +636,13 @@ while 1:
                     '''
 
                     data = data.drop(['sl'], axis=1)  # str(col),
-                    print(f"Input file {file} is of shape {data.shape}") # file name format - <type of variant>_<protein>_raw.csv
+                    print(f"Input file {file} is of shape {data.shape}\n") # file name format - <type of variant>_<protein>_raw.csv
                     data = data.dropna(subset=['1'])
                     data = data.reset_index(drop=True)
                     data['length'] = data.count(axis=1) - 1
+
                     gene_folder = os.path.splitext(os.path.basename(file))[0]  # Alpha_nsp1_raw
-                    fileName_fixedColLength = gene_folder.split('_')[0]+ gene_folder.split('_')[1] + '_fixedLength.csv'
+                    fileName_fixedColLength = gene_folder.split('_')[0]+ '_fixedLength.csv'
                     gene_folder = gene_folder.split('_')[1]  # nsp1
                     data = data[data.loc[:, 'length'] == ncbi_seq.loc[gene_folder, 'gene_length']]
                     data = data.drop("length", axis=1)
@@ -648,7 +663,7 @@ while 1:
                     os.chdir(path_fixedLength)
                     data.to_csv(fileName_fixedColLength, index=False)
                     os.chdir(path_raw_csv)
-                    print(f"\nFile {fileName_fixedColLength} Created of shape - {data.shape} " )
+                    print(f"\nFile {fileName_fixedColLength} Created of shape - {data.shape} \n" )
                     counter+=1
             os.chdir(path)
 
@@ -659,11 +674,13 @@ while 1:
             os.chdir(path)
             if not os.path.exists('_synNsyn'):
                 os.makedirs('_synNsyn')
-            #path_synNsyn = os.path.join(path, '_synNsyn')
+            if not os.path.exists('_consensus'):
+                os.makedirs('_consensus')
+            if not os.path.exists('_mutation'):
+                os.makedirs('_mutation')
+
             if os.path.exists(dir_fixedLength):
-                #path_fixedLength = path + dir_fixedLength
                 os.chdir(path_fixedLength)
-                #path_fixedLength_csv = path + '\*_fixedLength.csv'
                 if glob.glob('*_fixedLength.csv'):
                     fixedLength_csv_files = glob.glob('*_fixedLength.csv')
                     for file in fixedLength_csv_files:
@@ -671,7 +688,7 @@ while 1:
                         #c = '...'
                         #print('\rExecution stops in ' + str(b) + c, end='')
                         file_name = os.path.splitext(os.path.basename(file))[0]  # + os.path.splitext(os.path.basename(file))[1]
-                        file_name = file_name.split('_')[0] + '_' + file_name.split('_')[1]
+                        file_name = file_name.split('_')[0]
                         df_gene = pd.read_csv(file)
                         if df_gene.shape[0] > 0:
                             print(f"{file} of shape {df_gene.shape}\n")
@@ -695,53 +712,93 @@ while 1:
                                 consensus_file = file_name + '_consensus.csv'
                                 mutation_file = file_name + '_mutation.csv'
                                 synNsyn_file = file_name + '_synNsyn.csv'
-                                os.chdir(path_synNsyn)
 
-                                df_consensus.to_csv(consensus_file)
-                                df_mutation.to_csv(mutation_file, index=False)
+                                os.chdir(path_synNsyn)
                                 df_syn_nonSyn.to_csv(synNsyn_file, index=False)
+
+                                os.chdir(path)
+                                os.chdir(path_consensus)
+                                df_consensus.to_csv(consensus_file)
+                                os.chdir(path)
+                                os.chdir(path_mutation)
+                                df_mutation.to_csv(mutation_file, index=False)
+                                os.chdir(path)
                             else:
                                 consensus_file = file_name + '_consensus.csv'
                                 mutation_file = file_name + '_mutation.csv'
-                                os.chdir(path_synNsyn)
+                                os.chdir(path)
+                                os.chdir(path_consensus)
                                 df_consensus.to_csv(consensus_file)
+                                os.chdir(path)
+                                os.chdir(path_mutation)
                                 df_mutation.to_csv(mutation_file, index=False)
+                                os.chdir(path)
 
                             os.chdir(path_fixedLength)
                         else:
                             print(f"{file} Has No Data to Execute")
 
-        elif choice == 5: #Normalized Frequencies
+                else:
+                    print("Fixed Length Files not available")
+            else:
+                print("Fixed Length Files not available")
+
+
+        elif choice == 5: #Normalized Frequencies for all amino-acids and all genes
             os.chdir(path)
-            if not os.path.exists('_normMutations'):
+            if not os.path.exists('_allNormalized'):
                 # Create a new directory because it does not exist
-                os.makedirs('_normMutations')
+                os.makedirs('_allNormalized')
+            data  = {'Mutation':['A->C','A->G','A->T','C->A','C->G','C->T','G->A','G->C','G->T','T->A','T->C','T->G']}
+            combine_norm = pd.DataFrame(data)
             if os.path.exists('_synNsyn'):
                 os.chdir(path_synNsyn)
                 synNsyn_files = glob.glob('*_synNsyn.csv')
                 for file in synNsyn_files:
                     file_name = os.path.splitext(os.path.basename(file))[0]  # + os.path.splitext(os.path.basename(file))[1]
-                    file_name = file_name.split('_')[0] + '_' + file_name.split('_')[1]
+                    file_name = file_name.split('_')[0]
+                    df_syn_nonSyn = pd.read_csv(file)
 
+                    os.chdir(path_consensus)
                     consensus_file = file_name + '_consensus.csv'
                     df_consensus = pd.read_csv(consensus_file)
-                    df_syn_nonSyn = pd.read_csv(file)
+
                     print(f"Normalizing Mutations Spectra for {file} \n")
                     df_normalizedMutations = normalized_mutations(df_syn_nonSyn, df_consensus)
-                    # print(df_normalizedMutations)
+
                     os.chdir(path_normMutations)
                     norm_mutation_file = file_name + '_normalized.csv'
                     df_normalizedMutations.to_csv(norm_mutation_file, index=False)
+
+                    # Writing into combined Dataframe
+                    df_normalizedMutations = df_normalizedMutations['Normalized Frequency']
+                    combine_norm = pd.concat([combine_norm, df_normalizedMutations], axis=1)
+                    combine_norm.rename(columns={'Normalized Frequency': file_name}, inplace=True)
+
                     os.chdir(path_synNsyn)
 
+                os.chdir(path_normMutations)
+                # Drop nsp11
+                combine_norm = combine_norm.drop('nsp11', axis=1)
+                # find avg of normalized value
+                combine_norm['Normalized'] = combine_norm.mean(axis=1)
+                # Write to csv
+                combine_norm.to_csv('combine_normalized.csv', index=False)
+                os.chdir(path)
 
         elif choice == 6: # Calculate dN/dS
+            proteins = {'NSP' : ['NSP1','NSP2','NSP3','NSP4','NSP5','NSP6','NSP7','NSP8','NSP9','NSP10','NSP12','NSP13','NSP14','NSP15','NSP16'],
+                        'SP' : ['E','M','N','S'], 'AP' : ['ORF3a','ORF6','ORF7a','ORF7b','ORF8','ORF10']}
+
             os.chdir(path_supportingFile)
             # Reading Synonymous values
             df_synCodon_Values = pd.read_csv("syn_codon_values.csv")
             df_dnds = pd.DataFrame(columns=['gene', 'NSyn_mutations', 'NSyn_sites', 'dN', 'Syn_mutations', 'Syn_sites', 'dS', 'dN/dS'])
             df_dnds_row = df_dnds.shape[0]
             os.chdir(path)
+            if not os.path.exists('_dnds'):
+                os.makedirs('_dnds')
+
             if os.path.exists(dir_synNsyn):
                 os.chdir(path_synNsyn)
                 #path_fixedLength_csv = path + '\*_fixedLength.csv'
@@ -749,8 +806,8 @@ while 1:
                     synNsyn_files = glob.glob("*_synNsyn.csv")
                     for file in synNsyn_files:
                         file_name = os.path.splitext(os.path.basename(file))[0]  # + os.path.splitext(os.path.basename(file))[1]
-                        file_name = file_name.split('_')[0] + '_' + file_name.split('_')[1]
-                        df_dnds.loc[df_dnds_row, 'gene'] = file_name
+                        file_name = file_name.split('_')[0]
+                        df_dnds.loc[df_dnds_row, 'gene'] = file_name.upper()
                         df_syn_nonSyn = pd.read_csv(file)
                         print(f"{file} of shape {df_syn_nonSyn.shape}\n")
                         df_syn = df_syn_nonSyn.drop(df_syn_nonSyn[df_syn_nonSyn['Synonymous'] == 0].index)
@@ -793,17 +850,166 @@ while 1:
                             dn_ds = round(d_N / d_S, 5)
                         df_dnds.loc[df_dnds_row, 'dN/dS'] = dn_ds
                         df_dnds_row += 1
-                        print(f"\ndN/dS Calculated for  {file_name}")
+                        print(f"\ndN/dS Calculated for  {file_name}\n")
                         # Combining Syn and Nsyn dataframes
                         # df_synNsyn = df_syn.append(df_nsyn)
-
-                    os.chdir(path)
+                    os.chdir(path_dnds)
                     dnds_file = dir + '_dnds.csv'
                     df_dnds.to_csv(dnds_file, index=False)
+
+                    os.chdir(path)
+                    df_dnds = df_dnds[['gene','dN/dS']]
+                    for row in range(df_dnds.shape[0]):
+                        for key, value in proteins.items():
+                            if df_dnds.loc[row,'gene'] in value:
+                                df_dnds.loc[row,'Protein'] = key
+                                break
+                    df_dnds.to_csv('all_dnds.csv', index=False)
+
+
+
+        elif choice == 7: # Five Fold Degenerated Region Normalized mutation frequencies
+            os.chdir(path)
+            if not os.path.exists('_ffdNormalized'):
+                os.makedirs('_ffdNormalized')
+            os.chdir(path_synNsyn)
+            synNsyn_files = glob.glob('*_synNsyn.csv')
+            data  = {'Mutation':['A->C','A->G','A->T','C->A','C->G','C->T','G->A','G->C','G->T','T->A','T->C','T->G']}
+            combine_ffd_alanine = pd.DataFrame(data)
+            combine_ffd_glycine = pd.DataFrame(data)
+            combine_ffd_proline = pd.DataFrame(data)
+            combine_ffd_threonine = pd.DataFrame(data)
+            combine_ffd_valine = pd.DataFrame(data)
+            for file in synNsyn_files:
+                file_name = os.path.splitext(os.path.basename(file))[0]  # + os.path.splitext(os.path.basename(file))[1]
+                file_name = file_name.split('_')[0]
+                df_syn_nonSyn = pd.read_csv(file)
+
+                # Normalize FFD mutations
+                ffd_alanine = df_syn_nonSyn[df_syn_nonSyn['source_AA'] == 'alanine']
+                ffd_alanine = ffd_alanine.reset_index(drop=True)
+
+                ffd_glycine = df_syn_nonSyn[df_syn_nonSyn['source_AA'] == 'glycine']
+                ffd_glycine = ffd_glycine.reset_index(drop=True)
+
+                ffd_proline = df_syn_nonSyn[df_syn_nonSyn['source_AA'] == 'proline']
+                ffd_proline = ffd_proline.reset_index(drop=True)
+
+                ffd_threonine = df_syn_nonSyn[df_syn_nonSyn['source_AA'] == 'threonine']
+                ffd_threonine = ffd_threonine.reset_index(drop=True)
+
+                ffd_valine = df_syn_nonSyn[df_syn_nonSyn['source_AA'] == 'valine']
+                ffd_valine = ffd_valine.reset_index(drop=True)
+
+                os.chdir(path_consensus) # Fetch related consensus file
+                consensus_file = file_name + '_consensus.csv'
+                df_consensus = pd.read_csv(consensus_file)
+
+                # Normalize  the file
+                print(f"Normalizing nonSynonymous Mutations Spectra for {file} \n")
+                df_normalized_alanine = normalized_mutations(ffd_alanine, df_consensus)
+                df_normalized_glycine = normalized_mutations(ffd_glycine, df_consensus)
+                df_normalized_proline = normalized_mutations(ffd_proline, df_consensus)
+                df_normalized_threonine = normalized_mutations(ffd_threonine, df_consensus)
+                df_normalized_valine = normalized_mutations(ffd_valine, df_consensus)
+
+                # Drop other columns Except 'Normalized Frequency'
+                df_normalized_alanine = df_normalized_alanine['Normalized Frequency']
+                df_normalized_glycine = df_normalized_glycine['Normalized Frequency']
+                df_normalized_proline = df_normalized_proline['Normalized Frequency']
+                df_normalized_threonine = df_normalized_threonine['Normalized Frequency']
+                df_normalized_valine = df_normalized_valine['Normalized Frequency']
+
+                # Concate to the combined Dataframe & Rename the column to Gene_name(file_name, here)
+                combine_ffd_alanine = pd.concat([combine_ffd_alanine, df_normalized_alanine], axis=1)
+                combine_ffd_alanine.rename(columns={'Normalized Frequency': file_name}, inplace=True)
+                combine_ffd_glycine = pd.concat([combine_ffd_glycine, df_normalized_glycine], axis=1)
+                combine_ffd_glycine.rename(columns={'Normalized Frequency': file_name}, inplace=True)
+                combine_ffd_proline = pd.concat([combine_ffd_proline, df_normalized_proline], axis=1)
+                combine_ffd_proline.rename(columns={'Normalized Frequency': file_name}, inplace=True)
+                combine_ffd_threonine = pd.concat([combine_ffd_threonine, df_normalized_threonine], axis=1)
+                combine_ffd_threonine.rename(columns={'Normalized Frequency': file_name}, inplace=True)
+                combine_ffd_valine = pd.concat([combine_ffd_valine, df_normalized_valine], axis=1)
+                combine_ffd_valine.rename(columns={'Normalized Frequency': file_name}, inplace=True)
+
+                os.chdir(path_synNsyn)
+
+            os.chdir(path_ffdNormalized)
+            # Drop nsp11
+            combine_ffd_alanine = combine_ffd_alanine.drop('nsp11', axis=1)
+            combine_ffd_glycine = combine_ffd_glycine.drop('nsp11', axis=1)
+            combine_ffd_proline = combine_ffd_proline.drop('nsp11', axis=1)
+            combine_ffd_threonine = combine_ffd_threonine.drop('nsp11', axis=1)
+            combine_ffd_valine = combine_ffd_valine.drop('nsp11', axis=1)
+
+            # Find average for all genes row wise
+            combine_ffd_alanine['Normalized'] = combine_ffd_alanine.mean(axis=1)
+            combine_ffd_glycine['Normalized'] = combine_ffd_glycine.mean(axis=1)
+            combine_ffd_proline['Normalized'] = combine_ffd_proline.mean(axis=1)
+            combine_ffd_threonine['Normalized'] = combine_ffd_threonine.mean(axis=1)
+            combine_ffd_valine['Normalized'] = combine_ffd_valine.mean(axis=1)
+
+            # Write to csv file
+            combine_ffd_alanine.to_csv('combine_ffd_alanine.csv', index=False)
+            combine_ffd_glycine.to_csv('combine_ffd_glycine.csv', index=False)
+            combine_ffd_proline.to_csv('combine_ffd_proline.csv', index=False)
+            combine_ffd_threonine.to_csv('combine_ffd_threonine.csv', index=False)
+            combine_ffd_valine.to_csv('combine_ffd_valine.csv', index=False)
+
+            os.chdir(path)
+
+
+
+
+        elif choice == 8: # non-Synonymous site Normalized mutation frequencies
+            os.chdir(path)
+            if not os.path.exists('_nsynNormalized'):
+                os.makedirs('_nsynNormalized')
+            data  = {'Mutation':['A->C','A->G','A->T','C->A','C->G','C->T','G->A','G->C','G->T','T->A','T->C','T->G']}
+            combine_nsyn_norm = pd.DataFrame(data)
+            os.chdir(path_synNsyn)
+            synNsyn_files = glob.glob('*_synNsyn.csv')
+            for file in synNsyn_files:
+                file_name = os.path.splitext(os.path.basename(file))[0]  # + os.path.splitext(os.path.basename(file))[1]
+                file_name = file_name.split('_')[0]
+                df_syn_nonSyn = pd.read_csv(file)
+
+                # Normalize non-syn mutations
+                df_nsyn = df_syn_nonSyn[df_syn_nonSyn['Non-Synonymous'] == 1] # Filter non-syn from synNsyn files
+                df_nsyn = df_nsyn.reset_index(drop=True)
+
+
+                os.chdir(path_consensus) # Fetch related consensus file
+                consensus_file = file_name + '_consensus.csv'
+                df_consensus = pd.read_csv(consensus_file)
+
+                print(f"Normalizing nonSynonymous Mutations Spectra for {file} \n")
+                df_normalizedMutations = normalized_mutations(df_nsyn, df_consensus)
+                # print(df_normalizedMutations)
+
+                df_normalizedMutations = df_normalizedMutations['Normalized Frequency']
+                combine_nsyn_norm = pd.concat([combine_nsyn_norm, df_normalizedMutations], axis=1)
+                combine_nsyn_norm.rename(columns={'Normalized Frequency': file_name}, inplace=True)
+                #combine_nsyn_norm = combine_nsyn_norm.append(df_normalizedMutations, ignore_index=True)
+
+                os.chdir(path_synNsyn)
+
+            os.chdir(path_nsynNormalized)
+            combine_nsyn_norm = combine_nsyn_norm.drop('nsp11', axis=1)
+            combine_nsyn_norm['Normalized'] = combine_nsyn_norm.mean(axis=1)
+            combine_nsyn_norm.to_csv('combine_nsyn_normalized.csv', index=False)
+            os.chdir(path)
+
+
+
+
+
+
 
 
         else:
             print("Please Enter a Correct Option From  the MENU.")
+
 
 
 
