@@ -52,10 +52,7 @@ Upon running the program, it will display a menu:
 The user must enter the corresponding number to the required option and press Enter Key from the keyboard.
 After processing data it will generate csv files and store them in the present working directory.
 
-> **To execute any of the options from 4,5,6 in the menu, it's mandatory to execute options 1,2 and 3 sequentially.**
->
-> 
-
+> **To execute any of the options from 4,5,6 in the menu, it's mandatory to execute options 1,2 and 3 sequentially.** <br />
 
 [ Specifically for the data provided in https://doi.org/10.5281/zenodo.13355486, options 2 and 3 are being executed, and the obtained .csv files are provided in the same repository, considering the volume of data. ]
 
