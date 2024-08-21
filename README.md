@@ -12,13 +12,13 @@ Nucleotide polymorphism is the change in a single base position in the genome, a
    3. Extract the Zip folder in a desired location
    4. Prepare the data in the downloaded directories as below:
          ### Preparing directories for the program run:
-           ### For NCBI file
-             1. Inside the folder **' Supporting Files/ncbi** is a downloaded file **Covid19_NCBI_Seq.txt**
-             2. Create the .csv file for **Covid19_NCBI_Seq.txt** by choosing the option 1, after running the program.
-           ### For the Gene file
-             1. Download two data folders from the Zenodo repository: https://doi.org/10.5281/zenodo.13355486
-             2. Extract the folders **Aug2020-Sep2023** and **Dec2019-July2020**
-             3. Move them into the downloaded repository on the local machine.
+         ### For NCBI file
+         1. Inside the folder **' Supporting Files/ncbi** is a downloaded file **Covid19_NCBI_Seq.txt**
+         2. Create the .csv file for **Covid19_NCBI_Seq.txt** by choosing the option 1, after running the program.
+         ### For the Gene file
+         1. Download two data folders from the Zenodo repository: https://doi.org/10.5281/zenodo.13355486
+         2. Extract the folders **Aug2020-Sep2023** and **Dec2019-July2020**
+         3. Move them into the downloaded repository on the local machine.
    6. Run the **_Polymorphism_CtoT.py_** file.
 
 # Program Execution
