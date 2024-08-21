@@ -8,9 +8,18 @@ Nucleotide polymorphism is the change in a single base position in the genome, a
 
 ## Approach- 1: Download Zip
    1. Go to the link https://github.com/MDash-NITAP/Nucleotide-Polymorphism or https://github.com/MDash-NITAP/Nucleotide-Polymorphism.git
-   2. Select Download Zip option from the drop-down menu for Code<>      
-   3. Extract the Zip folder
-   4. Run the **_Polymorphism_CtoT.py_** file.
+   2. Select **Download Zip** option from the drop-down menu for Code<>      
+   3. Extract the Zip folder in a desired location
+   4. Prepare the data in the downloaded directories as below:
+         ## Preparing directories for the program run:
+           ### For NCBI file
+             1. Create a folder 'Supporting Files' in the current working directory (where the program file is saved).
+             2. Create another folder 'ncbi' inside the folder 'Supporting Files'
+           ### For the Gene file
+             1. Create a folder with the name of the gene
+             2. Inside the above folder, create another folder '_raw_fasta'
+             3. Save the downloaded fasta/txt file(s) inside the folder '_raw_fasta'
+   5. Run the **_Polymorphism_CtoT.py_** file.
 
 # Program Execution
 The program can be run on a Command Prompt or Power Shell or any GUI, having an installed Python Interpreter.
@@ -25,15 +34,6 @@ The outputs of the program are:
   5. Calculates dN/dS (to know more about dN/dS: Please refer to the related journal paper)
 
 # How it works:
-
-## Preparing directories for the program run:
-  ### For NCBI file
-    1. Create a folder 'Supporting Files' in the current working directory (where the program file is saved).
-    2. Create another folder 'ncbi' inside the folder 'Supporting Files'
-  ### For the Gene file
-    1. Create a folder with the name of the gene
-    2. Inside the above folder, create another folder '_raw_fasta'
-    3. Save the downloaded fasta/txt file(s) inside the folder '_raw_fasta'
          
 Upon running the program, it will display a menu:
 
