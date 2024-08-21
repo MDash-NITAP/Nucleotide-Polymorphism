@@ -6,23 +6,23 @@ Nucleotide polymorphism is the change in a single base position in the genome, a
 
 # Installation of the Program
 
-## Approach- 1: Download Zip
+## Download Zip
    1. Go to the link https://github.com/MDash-NITAP/Nucleotide-Polymorphism or https://github.com/MDash-NITAP/Nucleotide-Polymorphism.git
    2. Select **Download Zip** option from the drop-down menu for Code<>      
    3. Extract the Zip folder in a desired location
    4. Prepare the data in the downloaded directories as below:
-         ## Preparing directories for the program run:
+         ### Preparing directories for the program run:
            ### For NCBI file
-             1. Create a folder 'Supporting Files' in the current working directory (where the program file is saved).
-             2. Create another folder 'ncbi' inside the folder 'Supporting Files'
+             1. Inside the folder **' Supporting Files/ncbi** is a downloaded file **Covid19_NCBI_Seq.txt**
+             2. Create the .csv file for **Covid19_NCBI_Seq.txt** by choosing the option 1, after running the program.
            ### For the Gene file
-             1. Create a folder with the name of the gene
-             2. Inside the above folder, create another folder '_raw_fasta'
-             3. Save the downloaded fasta/txt file(s) inside the folder '_raw_fasta'
+             1. Download two data folders from the Zenodo repository: 10.5281/zenodo.13355485
+             2. Extract the folders **Aug2020-Sep2023** and **Dec2019-July2020**
+             3. Move them into the downloaded repository on the local machine.
    5. Run the **_Polymorphism_CtoT.py_** file.
 
 # Program Execution
-The program can be run on a Command Prompt or Power Shell or any GUI, having an installed Python Interpreter.
+The program can be run on a Command Prompt, Power Shell, or any GUI with an installed Python Interpreter.
 
 # What the program offers:
 It is a menu-driven program, which can be run on the Command Prompt/ PowerShell/ any GUI for Python Programming.
