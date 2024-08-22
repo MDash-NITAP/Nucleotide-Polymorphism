@@ -1,5 +1,5 @@
 # Nucleotide-Polymorphism
-The program identifies the consensus sequence and detects mutations for a given genome sequence. Depending on the mutations, Synonymous/non-synonymous mutations, ti/tv ratio, and dn/ds are found.
+The program identifies the consensus sequence and detects mutations for a given genome sequence. Synonymous/non-synonymous mutations, ti/tv ratio, and dn/ds are found depending on the mutations.
 
 # What is a 'Nucleotide-Polymorphism' :
 Nucleotide polymorphism is the change in a single base position in the genome, and it can be located in coding or non-coding regions. Otherwise known as Mutations. It can affect viral genomes in several ways, like the rate of multiplying (spreading), the severity of infection, etc.
@@ -7,7 +7,8 @@ Nucleotide polymorphism is the change in a single base position in the genome, a
 # Installation of the Program
 
 ## Download Zip
-   1. Go to the link https://github.com/MDash-NITAP/Nucleotide-Polymorphism or https://github.com/MDash-NITAP/Nucleotide-Polymorphism.git
+   1. Go to the link https://github.com/MDash-NITAP/Nucleotide-Polymorphism  or
+                     https://github.com/MDash-NITAP/Nucleotide-Polymorphism.git
    2. Select **Download Zip** option from the drop-down menu for Code<>      
    3. Extract the Zip folder in a desired location
    4. Prepare the data in the downloaded directories as below:
@@ -21,7 +22,7 @@ Nucleotide polymorphism is the change in a single base position in the genome, a
          2. Extract the folders **Aug2020-Sep2023** and **Dec2019-July2020**
          3. Move them into the downloaded repository on the local machine.
             
-   5. Run the **_Polymorphism_CtoT.py_** file.
+   6. Run the **_Polymorphism_CtoT.py_** file.
 
 # Program Execution
 The program can be run on a Command Prompt, Power Shell, or any GUI with an installed Python Interpreter.
