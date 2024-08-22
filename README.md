@@ -92,4 +92,4 @@ Upon execution, all the output will be available in the respective folders as cs
 
 
 
-> For any questions or issues, please refer to the paper or contact madhusmita.dash81@gmail.com/ madhusmita.phd@nitap.ac.in.
+> For any questions or issues, please refer to the paper or contact [primary mail](madhusmita.dash81@gmail.com)/ madhusmita.phd@nitap.ac.in.
