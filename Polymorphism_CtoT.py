@@ -779,7 +779,7 @@ while 1:
 
                 os.chdir(path_normMutations)
                 # Drop nsp11
-                combine_norm = combine_norm.drop('nsp11', axis=1)
+                #combine_norm = combine_norm.drop('nsp11', axis=1)
                 # find avg of normalized value
                 combine_norm['Normalized'] = combine_norm.mean(axis=1)
                 # Write to csv
@@ -935,12 +935,14 @@ while 1:
                 os.chdir(path_synNsyn)
 
             os.chdir(path_ffdNormalized)
+            '''
             # Drop nsp11
             combine_ffd_alanine = combine_ffd_alanine.drop('nsp11', axis=1)
             combine_ffd_glycine = combine_ffd_glycine.drop('nsp11', axis=1)
             combine_ffd_proline = combine_ffd_proline.drop('nsp11', axis=1)
             combine_ffd_threonine = combine_ffd_threonine.drop('nsp11', axis=1)
             combine_ffd_valine = combine_ffd_valine.drop('nsp11', axis=1)
+            '''
 
             # Find average for all genes row wise
             combine_ffd_alanine['Normalized'] = combine_ffd_alanine.mean(axis=1)
@@ -995,7 +997,7 @@ while 1:
                 os.chdir(path_synNsyn)
 
             os.chdir(path_nsynNormalized)
-            combine_nsyn_norm = combine_nsyn_norm.drop('nsp11', axis=1)
+            #combine_nsyn_norm = combine_nsyn_norm.drop('nsp11', axis=1)
             combine_nsyn_norm['Normalized'] = combine_nsyn_norm.mean(axis=1)
             combine_nsyn_norm.to_csv('combine_nsyn_normalized.csv', index=False)
             os.chdir(path)
